@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getALLAC } from "../store/store";
+import { getALLAC, getOneAC, getRegionAC, getSearchAC } from "../store/store";
 
 const instance=axios.create({
     baseURL: 'https://restcountries.com/v3.1'
@@ -10,8 +10,17 @@ export const countriesAPI ={
         instance.get('/all')
         .then(res => dispatch(getALLAC(res.data)))
     }, 
-    getCouuntry(){
-        instance.get(`/name/usa`)
-        .then(res => console.log(res.data))
+    getCouuntry(dispatch, name){
+        instance.get(`/name/${name}`)
+        .then(res => dispatch(getOneAC(res.data)))
+    }, 
+    getRegion(dispatch, region){
+        instance.get(`/region/${region}`)
+        .then((res)=>dispatch(getRegionAC(res.data)))
+    },
+    getSearch(dispatch, name){
+        instance.get(`/name/${name}`)
+        .then((res)=> dispatch(getSearchAC(res.data)))
+        .catch((err)=>console.log(err))
     }
 }

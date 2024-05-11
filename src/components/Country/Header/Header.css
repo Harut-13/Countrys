@@ -1,0 +1,16 @@
+.o{
+    position: relative;
+}
+
+.open{
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow-y: scroll;
+}
+
+.open> img{
+    width: 280px;
+}
